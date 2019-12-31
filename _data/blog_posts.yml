@@ -1,0 +1,6 @@
+- name: 'When to use a helper method'
+  link: /blog_posts/when_to_use_a_helper_method.html
+- name: 'Ruby Truthiness'
+  link: '/blog_posts/truthiness.html'
+- name: 'Ruby Ternary Operator'
+  link: '/blog_posts/ternary_operator.html'

@@ -1,1 +1,13 @@
-Hello World
+---
+title: Alexandra Borge
+layout: default
+---
+
+<h1>{{ "Alexandra Borge" | upcase }}</h1>
+<div>
+  {% for post in site.data.blog_posts %}
+    <a href="{{post.link}}" class='card'>
+      <div>{{ post.name }}</div>
+    </a>
+  {% endfor %}
+</div>

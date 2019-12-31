@@ -1,0 +1,36 @@
+I"�<h2 id="ruby-truthiness">Ruby Truthiness</h2>
+
+<p>Truthiness is the concept that every object is true except for false and nil. This means that you can use any element in a condition without using it in a boolean expression.</p>
+
+<h2 id="example">Example</h2>
+
+<p>We can use this array of hashes called <code class="highlighter-rouge">favorites</code>.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">favorites</span> <span class="o">=</span> <span class="p">[{</span><span class="ss">id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">fruit: </span><span class="err">‘</span><span class="n">banana</span><span class="err">’</span><span class="p">,</span> <span class="ss">vegetable: </span><span class="err">‘</span><span class="n">brocolli</span><span class="err">’</span><span class="p">},</span> <span class="p">{</span><span class="ss">id: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">fruit: </span><span class="err">‘</span><span class="n">orange</span><span class="err">’</span><span class="p">,</span> <span class="ss">vegetable: </span><span class="err">‘</span><span class="n">celery</span><span class="err">’</span><span class="p">}]</span>
+</code></pre></div></div>
+<p>We want to define a variable that holds the record of the first person that has “banana” listed as their favorite fruit.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">banana_lover</span> <span class="o">=</span> <span class="n">favorites</span><span class="p">.</span><span class="nf">find</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="n">f</span><span class="p">[</span><span class="ss">:fruit</span><span class="p">]</span> <span class="o">==</span> <span class="err">‘</span><span class="n">banana</span><span class="err">’</span> <span class="p">}</span>
+
+<span class="o">=&gt;</span> <span class="n">banana_lover</span> <span class="o">=</span> <span class="p">{</span><span class="ss">id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">fruit: </span><span class="err">‘</span><span class="n">banana</span><span class="err">’</span><span class="p">,</span> <span class="ss">vegetable: </span><span class="err">‘</span><span class="n">broccoli</span><span class="err">’</span><span class="p">}</span>
+</code></pre></div></div>
+<p><code class="highlighter-rouge">banana_lover</code> is defined as the hash {fruit: ‘banana’, vegetable: ‘broccoli’} but it is also truthy and evaluates to true because it is neither false nor nil.</p>
+
+<p>But if we defined a new variable</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">apple_lover</span> <span class="o">=</span> <span class="n">favorites</span><span class="p">.</span><span class="nf">find</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="n">f</span><span class="p">[</span><span class="ss">:fruit</span><span class="p">]</span> <span class="o">==</span> <span class="err">‘</span><span class="n">apple</span><span class="err">’</span> <span class="p">}</span>
+
+<span class="o">=&gt;</span> <span class="n">apple_lover</span> <span class="o">=</span> <span class="kp">nil</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">apple_lover</code> is nil which means it is falsey and evaluates to false.</p>
+
+<p>You can use these in conditional statements such as this:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">apple_lover</span>
+  <span class="err">‘</span><span class="no">I</span> <span class="n">love</span> <span class="n">apples</span><span class="err">’</span>
+<span class="k">elsif</span> <span class="n">banana_lover</span>
+  <span class="err">‘</span><span class="no">I</span> <span class="n">love</span> <span class="n">bananas</span><span class="err">’</span>
+<span class="k">end</span>
+</code></pre></div></div>
+:ET

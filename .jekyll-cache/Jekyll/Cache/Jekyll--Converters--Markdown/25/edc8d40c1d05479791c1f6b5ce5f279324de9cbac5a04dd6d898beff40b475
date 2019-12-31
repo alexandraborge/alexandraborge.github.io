@@ -1,0 +1,132 @@
+I"à6<h2 id="when-to-use-a-helper-method">When to Use a Helper Method</h2>
+
+<p>Helper methods are used in the views and are made to be reusable.</p>
+
+<p>Below are some reasons why you might use a helper method.</p>
+
+<h2 id="when-you-have-a-lot-of-repeat-ruby-code-in-your-views-or-other-methods">When you have a lot of repeat ruby code in your views or other methods</h2>
+
+<p>We want to avoid repeating the same piece of code in general. For larger blocks of code, we may use a partial but other times a helper method will do the trick.</p>
+
+<p>Lets looks at an example where we have to display a cats name based on some criteria.</p>
+
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'adult-cats'</span><span class="nt">&gt;</span>
+  <span class="cp">&lt;%</span> <span class="n">adult_cats</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">cat</span><span class="o">|</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">cat</span><span class="p">.</span><span class="nf">personality</span> <span class="o">==</span> <span class="s1">'friendly'</span> <span class="o">&amp;&amp;</span> <span class="p">[</span><span class="s1">'medium'</span><span class="p">,</span> <span class="s1">'large'</span><span class="p">].</span><span class="nf">include?</span><span class="p">(</span><span class="n">cat</span><span class="p">.</span><span class="nf">size</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">cat</span><span class="p">.</span><span class="nf">health</span> <span class="o">==</span> <span class="mi">10</span> <span class="cp">%&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="n">cat</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'kittens'</span><span class="nt">&gt;</span>
+  <span class="cp">&lt;%</span> <span class="n">kittens</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">cat</span><span class="o">|</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">cat</span><span class="p">.</span><span class="nf">personality</span> <span class="o">==</span> <span class="s1">'friendly'</span> <span class="o">&amp;&amp;</span> <span class="p">[</span><span class="s1">'medium'</span><span class="p">,</span> <span class="s1">'large'</span><span class="p">].</span><span class="nf">include?</span><span class="p">(</span><span class="n">cat</span><span class="p">.</span><span class="nf">size</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">cat</span><span class="p">.</span><span class="nf">health</span> <span class="o">==</span> <span class="mi">10</span> <span class="cp">%&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="n">cat</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>To clean this up we can move the shared code to a helper method.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cat_name</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
+  <span class="k">return</span> <span class="k">unless</span> <span class="n">cat</span><span class="p">.</span><span class="nf">personality</span> <span class="o">==</span> <span class="s1">'friendly'</span> <span class="o">&amp;&amp;</span>
+    <span class="p">[</span><span class="s1">'medium'</span><span class="p">,</span> <span class="s1">'large'</span><span class="p">].</span><span class="nf">include?</span><span class="p">(</span><span class="n">cat</span><span class="p">.</span><span class="nf">size</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+    <span class="n">cat</span><span class="p">.</span><span class="nf">health</span> <span class="o">==</span> <span class="mi">10</span>
+
+  <span class="n">cat</span><span class="p">.</span><span class="nf">name</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Then apply it to the view</p>
+
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'adult-cats'</span><span class="nt">&gt;</span>
+  <span class="cp">&lt;%</span> <span class="n">adult_cats</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">cat</span><span class="o">|</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">cat_name</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'kittens'</span><span class="nt">&gt;</span>
+  <span class="cp">&lt;%</span> <span class="n">kittens</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">cat</span><span class="o">|</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">cat_name</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<h2 id="when-you-have-a-lot-of-conditional-logic-in-your-views">When you have a lot of conditional logic in your views</h2>
+
+<p>We want to try to keep the view file as clean and uncluttered as possible. This means that if you have conditional logic that can be moved into a helper method, it is usually best to do so.</p>
+
+<p>Instead of having this in your view file</p>
+
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">cat</span><span class="p">.</span><span class="nf">age</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="cp">%&gt;</span>
+     <span class="nt">&lt;div&gt;</span>Age Group: Young Cat<span class="nt">&lt;/div&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">elsif</span> <span class="n">cat</span><span class="p">.</span><span class="nf">age</span> <span class="o">&lt;</span> <span class="mi">4</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;div&gt;</span>Age Group: Teenage Cat<span class="nt">&lt;/div&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;div&gt;</span>Age Group: Old Cat<span class="nt">&lt;/div&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</code></pre></div></div>
+
+<p>You can add this logic to a helper method and call the helper method in the view. This would look like this</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">age_group</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
+  <span class="n">label</span> <span class="o">=</span> <span class="k">if</span> <span class="n">cat</span><span class="p">.</span><span class="nf">age</span> <span class="o">&lt;</span> <span class="mi">2</span>
+            <span class="s1">'Young'</span>
+          <span class="k">elsif</span> <span class="n">cat</span><span class="p">.</span><span class="nf">age</span> <span class="o">&lt;</span> <span class="mi">4</span>
+            <span class="s1">'Teenage'</span>
+          <span class="k">else</span>
+            <span class="s1">'Old'</span>
+          <span class="k">end</span>
+  <span class="s2">"</span><span class="si">#{</span><span class="n">label</span><span class="si">}</span><span class="s2"> Cat"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Age Group: <span class="cp">&lt;%=</span> <span class="n">age_group</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span> <span class="cp">%&gt;</span>
+</code></pre></div></div>
+
+<p>We turned 7 lines into one line in the view which makes it much cleaner and easier to read.</p>
+
+<h2 id="what-if-you-need-to-use-a-method-in-both-your-controller-and-your-views">What if you need to use a method in both your controller and your views?</h2>
+
+<p>In this example we want to define a method that will check if the cat has not be adopted yet. This method will be used in the controller but also the view. Right now we have to redefine it in the view in order to use it which means we are writing extra code.</p>
+
+<p><strong>Controller</strong></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">show</span>
+  <span class="vi">@all_cats</span> <span class="o">=</span> <span class="no">Cat</span><span class="p">.</span><span class="nf">all</span>
+  <span class="vi">@available_cats</span> <span class="o">=</span> <span class="vi">@all_cats</span><span class="p">.</span><span class="nf">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">cat</span><span class="o">|</span> <span class="n">available?</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">available?</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
+  <span class="o">!</span><span class="n">cat</span><span class="p">.</span><span class="nf">adopted</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><strong>View</strong></p>
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;%</span> <span class="vi">@available_cats</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">cat</span><span class="o">|</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">cat</span><span class="p">.</span><span class="nf">picture</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'cats'</span><span class="nt">&gt;</span>
+  <span class="cp">&lt;%</span> <span class="vi">@all_cats</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;div&gt;</span><span class="cp">&lt;%=</span> <span class="n">cat</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span> <span class="cp">&lt;%=</span> <span class="s1">'available'</span> <span class="k">unless</span> <span class="n">cat</span><span class="p">.</span><span class="nf">adopted</span> <span class="cp">%&gt;</span><span class="nt">&lt;/div&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+</code></pre></div></div>
+
+<p>Instead of redefining the <code class="highlighter-rouge">available?</code> method in the helper file you can define it in the controller like above and then use a rails method called <code class="highlighter-rouge">helper_method</code> which allows you to use that method the same you would a helper method https://apidock.com/rails/ActionController/Helpers/ClassMethods/helper_method. You can also pass multiple methods into it as arguments.</p>
+
+<p>You would call <code class="highlighter-rouge">helper_method</code> like this in the controller:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">helper_method</span><span class="p">(</span><span class="ss">:adopted?</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>then in the view:</p>
+<div class="language-erb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'cats'</span><span class="nt">&gt;</span>
+  <span class="cp">&lt;%</span> <span class="vi">@all_cats</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;div&gt;</span><span class="cp">&lt;%=</span> <span class="n">cat</span><span class="p">.</span><span class="nf">name</span> <span class="cp">%&gt;</span> <span class="cp">&lt;%=</span> <span class="s1">'available'</span> <span class="k">if</span> <span class="n">available?</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/div&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+:ET
