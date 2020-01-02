@@ -1,6 +1,4 @@
-I"¥<h2 id="ruby-truthiness">Ruby Truthiness</h2>
-
-<p>Truthiness is the concept that every object is true except for false and nil. This means that you can use any element in a condition without using it in a boolean expression.</p>
+I"v<p>Truthiness is the concept that every object is true except for false and nil. This means that you can use any element in a condition without using it in a boolean expression.</p>
 
 <h2 id="example">Example</h2>
 

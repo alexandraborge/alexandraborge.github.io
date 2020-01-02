@@ -1,6 +1,4 @@
-I"s<h2 id="ruby-ternary-operator">Ruby Ternary Operator</h2>
-
-<p>Ternary Operators in are used in place of <code class="highlighter-rouge">if/else</code> conditional statements. Using them can refactor a five line <code class="highlighter-rouge">if/else</code> statement into one line.</p>
+I"8<p>Ternary Operators in are used in place of <code class="highlighter-rouge">if/else</code> conditional statements. Using them can refactor a five line <code class="highlighter-rouge">if/else</code> statement into one line.</p>
 
 <p>Ternary Operators thave 3 parts.</p>
 <ul>

@@ -2,9 +2,8 @@
 layout: post
 author: Alexandra Borge
 title: Ruby Ternary Operator
+date: 'December 28, 2019'
 ---
-
-## Ruby Ternary Operator
 
 Ternary Operators in are used in place of `if/else` conditional statements. Using them can refactor a five line `if/else` statement into one line.
 

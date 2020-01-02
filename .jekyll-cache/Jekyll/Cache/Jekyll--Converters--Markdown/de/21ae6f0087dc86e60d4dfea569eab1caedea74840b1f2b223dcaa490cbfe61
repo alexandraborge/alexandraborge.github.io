@@ -1,8 +1,5 @@
-I"à6<h2 id="when-to-use-a-helper-method">When to Use a Helper Method</h2>
-
-<p>Helper methods are used in the views and are made to be reusable.</p>
-
-<p>Below are some reasons why you might use a helper method.</p>
+I"‘6<p>Helper methods are used in the views and are made to be reusable.
+Below are some reasons why you might use a helper method.</p>
 
 <h2 id="when-you-have-a-lot-of-repeat-ruby-code-in-your-views-or-other-methods">When you have a lot of repeat ruby code in your views or other methods</h2>
 

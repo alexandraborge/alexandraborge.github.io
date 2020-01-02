@@ -2,11 +2,10 @@
 layout: post
 author: Alexandra Borge
 title: When to Use a Helper Method
+date: 'December 15, 2019'
 ---
-## When to Use a Helper Method
 
 Helper methods are used in the views and are made to be reusable.
-
 Below are some reasons why you might use a helper method.
 
 ## When you have a lot of repeat ruby code in your views or other methods
