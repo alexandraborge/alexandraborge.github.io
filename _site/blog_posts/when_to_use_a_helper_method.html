@@ -126,9 +126,9 @@ Below are some reasons why you might use a helper method.</p>
 
 </code></pre></div></div>
 
-<p>Instead of redefining the <code class="highlighter-rouge">available?</code> method in the helper file you can define it in the controller like above and then use a rails method called <code class="highlighter-rouge">helper_method</code> which allows you to use that method the same you would a helper method https://apidock.com/rails/ActionController/Helpers/ClassMethods/helper_method. You can also pass multiple methods into it as arguments.</p>
+<p>Instead of redefining the <code class="language-plaintext highlighter-rouge">available?</code> method in the helper file you can define it in the controller like above and then use a rails method called <code class="language-plaintext highlighter-rouge">helper_method</code> which allows you to use that method the same you would a helper method https://apidock.com/rails/ActionController/Helpers/ClassMethods/helper_method. You can also pass multiple methods into it as arguments.</p>
 
-<p>You would call <code class="highlighter-rouge">helper_method</code> like this in the controller:</p>
+<p>You would call <code class="language-plaintext highlighter-rouge">helper_method</code> like this in the controller:</p>
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">helper_method</span><span class="p">(</span><span class="ss">:adopted?</span><span class="p">)</span>
 </code></pre></div></div>
 
