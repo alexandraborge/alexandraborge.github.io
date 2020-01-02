@@ -109,3 +109,10 @@ body {
     margin-bottom: 20px;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .post-page {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
