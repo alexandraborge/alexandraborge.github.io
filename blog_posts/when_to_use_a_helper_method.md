@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 author: Alexandra Borge
 title: When to Use a Helper Method
 ---

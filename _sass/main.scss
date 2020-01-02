@@ -1,3 +1,76 @@
-.card {
-  color: green;
+body {
+  margin: 30px;
+  font-family: 'Abel', sans-serif;
+}
+
+.title {
+  font-size: 40px;
+  margin-bottom: 30px;
+  border-bottom: 5px solid black;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+
+  .sub-title {
+    font-size: 30px;
+  }
+
+  .posts {
+    background-color: #EFBAD2;
+    border-radius: 5px;
+    width: 50%;
+    padding: 10px;
+    margin-right: 5px;
+
+    .card:hover, .card:focus, .card:active {
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+    .card {
+      color: green;
+      border: 1px solid white;
+      border-radius: 5px;
+      margin: 10px 0;
+      background-color: #F1F6EA;
+      height: 90px;
+      padding: 5px;
+      -webkit-transform: perspective(1px) translateZ(0);
+      transform: perspective(1px) translateZ(0);
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+      -webkit-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      -webkit-transition-property: transform;
+      transition-property: transform;
+
+      .post-name {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .excerpt {
+        color: black;
+        font-size: 14px;
+        padding: 0 10px 5px;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .read-more {
+        margin-left: 43%;
+      }
+    }
+  }
+
+  .projects {
+    border-radius: 5px;
+    width: 50%;
+    padding: 10px;
+    background: #DAEFBA;
+    margin-left: 5px;
+  }
 }

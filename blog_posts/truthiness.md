@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 author: Alexandra Borge
 title: Ruby Truthiness
 ---
