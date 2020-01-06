@@ -1,0 +1,6 @@
+- name: 'Secret Santa'
+  description: 'Ruby on Rails application where users can host/play their own family/friends game of secret santa. More holiday games to come later.'
+  link: 'https://github.com/alexandraborge/secret-santa'
+- name: 'Game Library'
+  description: 'Sinatra applicaton I use to manage and select a game to play.'
+  link: 'https://github.com/alexandraborge/Game-Library'

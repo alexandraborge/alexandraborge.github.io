@@ -17,5 +17,11 @@ layout: default
   </div>
   <div class='projects'>
     <div class='sub-title'>Projects</div>
+    {% for project in site.data.projects %}
+    <div class='card'>
+      <div class='project-name'>{{  project.name }} &nbsp;&nbsp;<a href="{{ project.link }}"><i class="fab fa-github"></i></a></div>
+      <div class='project-description'>{{ project.description }}</div>
+    </div>
+    {% endfor %}
   </div>
 </div>
