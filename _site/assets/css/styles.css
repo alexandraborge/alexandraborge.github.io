@@ -4,14 +4,18 @@ body { margin: 50px; font-family: 'Abel', sans-serif; }
 
 .content { display: flex; justify-content: space-between; }
 .content .sub-title { font-size: 30px; }
+.content .card:hover, .content .card:focus, .content .card:active { -webkit-transform: scale(1.1); transform: scale(1.1); }
+.content .card { border: 1px solid white; border-radius: 5px; margin: 10px 0; padding: 5px; height: 90px; -webkit-transform: perspective(1px) translateZ(0); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-transition-duration: 0.3s; transition-duration: 0.3s; -webkit-transition-property: transform; transition-property: transform; }
 .content .posts { background-color: #EFBAD2; border-radius: 5px; width: 50%; padding: 10px; margin-right: 5px; }
-.content .posts .card:hover, .content .posts .card:focus, .content .posts .card:active { -webkit-transform: scale(1.1); transform: scale(1.1); }
-.content .posts .card { color: green; border: 1px solid white; border-radius: 5px; margin: 10px 0; background-color: #F1F6EA; height: 90px; padding: 5px; -webkit-transform: perspective(1px) translateZ(0); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0); -webkit-transition-duration: 0.3s; transition-duration: 0.3s; -webkit-transition-property: transform; transition-property: transform; }
-.content .posts .card .post-name { font-size: 18px; margin-bottom: 5px; }
-.content .posts .card .excerpt { color: black; font-size: 14px; padding: 0 10px 5px; }
+.content .posts .card { color: green; border: 1px solid white; background-color: #F1F6EA; }
+.content .posts .card .post-name { font-size: 20px; margin-bottom: 5px; }
+.content .posts .card .excerpt { color: black; font-size: 15px; padding: 0 10px 5px; }
 .content .posts .card a { text-decoration: none; }
 .content .posts .card .read-more { margin-left: 43%; }
 .content .projects { border-radius: 5px; width: 50%; padding: 10px; background: #DAEFBA; margin-left: 5px; }
+.content .projects .card { color: #C986B2; background-color: white; border: 2px dotted #C986B2; }
+.content .projects .card .project-name { font-size: 20px; margin-bottom: 5px; }
+.content .projects .card .project-description { color: black; font-size: 15px; padding: 0 10px 5px; }
 
 .post-page { border: 7px solid #DAEFBA; border-radius: 50px; padding: 10px; width: 60%; margin: 30px auto; }
 .post-page .highlighter-rouge { overflow: scroll; background-color: #F1F6EA; padding: 0 10px; }
